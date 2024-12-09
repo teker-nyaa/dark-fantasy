@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="main.js"></script>
+        <title>Dark Fantasy</title>
+    </head>
+    <body>
+        <h1>Dark Fantasy</h1>
+        <h2>Version 2</h2>
+        <p>Input</p>
+        <textarea name="text" id="txt" cols="45" rows="20"></textarea>
+        <br/>
+        <p>Password: </p>
+        <input type="text" id="pass">
+        <br/>
+        <p>Option 1: </p>
+        <input type="text" id="op1">
+        <br/>
+        <p>Option 2: </p>
+        <input type="text" id="op2">
+        <br/>
+        <button onclick="one()">Encrypt</button>
+        <button onclick="two()">Decrypt</button>
+        <p id="out">Output goes here</p>
+        <script>
+            function one(){
+                var pass = sha256($('#pass')).substring(0, 9);
+                var options = [$('#op1').val(), $('#op2').val()];
+                var text = $('#txt').val();
+                $('#out').text(encrypt(text, pass, options));
+            }
+
+            function two(){
+                var pass = sha256($('#pass')).substring(0, 9);
+                var options = [$('#op1').val(), $('#op2').val()];
+                var text = $('#txt').val();
+                $('#out').text(decrypt(text, pass, options));
+            }
+        </script>
+    </body>
+</html>
